@@ -49,6 +49,15 @@ public class WebTest
         String footer = driver.findElement(By.className("footer__copyright")).getText();
         System.out.println(footer);
     }
+    @Test
+    public void checkPhotoChange()
+    {
+        String url = "https://code.s3.yandex.net/qa-automation-engineer/java/files/paid-track/sprint1/avatarSelenium.png";
+        driver.findElement(By.cssSelector(".profile__image")).click();
+        driver.findElement(By.id("owner-avatar")).sendKeys(url);
+        driver.findElement(By.xpath(".//form[@name='edit-avatar']/button[text()='Сохранить']")).click();
+
+    }
 
 
     @Before
