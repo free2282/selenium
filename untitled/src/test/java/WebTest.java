@@ -42,7 +42,7 @@ public class WebTest
     @Test
     public void logInCheckFooter()
     {
-        
+
         driver.findElement(By.className("footer__copyright"));
         WebElement element = driver.findElement(By.className("footer__copyright"));
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
