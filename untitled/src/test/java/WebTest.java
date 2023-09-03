@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.openqa.selenium.*;
 import org.junit.Test;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class WebTest
 {
@@ -68,19 +70,17 @@ public class WebTest
         driver.findElement(By.name("name")).sendKeys(authData[0]);
         driver.findElement(By.name("link")).sendKeys(authData[1]);
         driver.findElement(By.xpath(".//form[@name='new-card']/button[text()='Сохранить']")).click();
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//button[@class='card__delete-button card__delete-button_visible']")));
+        new WebDriverWait(driver, 4).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//button[@class='card__delete-button card__delete-button_visible']")));
         driver.findElement(By.xpath(".//button[@class='card__delete-button card__delete-button_visible']")).click();
     }
     @Test
     public void checkContent()
     {
         WebElement element = driver.findElement(By.cssSelector(".places__item"));
-        
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-
-
-
     }
+
+
 
     @Before
     public void startUp() {
