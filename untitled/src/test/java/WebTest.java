@@ -70,6 +70,15 @@ public class WebTest
         driver.findElement(By.xpath(".//form[@name='new-card']/button[text()='Сохранить']")).click();
         new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//button[@class='card__delete-button card__delete-button_visible']")));
         driver.findElement(By.xpath(".//button[@class='card__delete-button card__delete-button_visible']")).click();
+    }
+    @Test
+    public void checkContent()
+    {
+        WebElement element = driver.findElement(By.cssSelector(".places__item"));
+        
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
+
+
 
     }
 
