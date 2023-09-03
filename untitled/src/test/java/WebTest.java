@@ -59,17 +59,29 @@ public class WebTest
 
     }
 
+    @Test
+    public void addContent()
+    {
+        //String[]
+        driver.findElement(By.className("profile__add-button")).click();
+        String[] authData = {"Прага", "https://code.s3.yandex.net/qa-automation-engineer/java/files/new_photo_selenium.jpg"};
+        driver.findElement(By.name("name")).sendKeys(authData[0]);
+        driver.findElement(By.name("link")).sendKeys(authData[1]);
+        driver.findElement(By.xpath(".//form[@name='new-card']/button[text()='Сохранить']")).click();
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//button[@class='card__delete-button card__delete-button_visible']")));
+        driver.findElement(By.xpath(".//button[@class='card__delete-button card__delete-button_visible']")).click();
+
+    }
 
     @Before
     public void startUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("https://qa-mesto.praktikum-services.ru/");
-        String mail = "free2282@ya.ru";
-        String password = "Freein22820";
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        driver.findElement(By.xpath(".//input[@id='email']")).sendKeys(mail);
-        driver.findElement(By.xpath(".//input[@id='password']")).sendKeys(password);
+        String[] authData = {"free2282@ya.ru", "Freein22820"};
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.findElement(By.xpath(".//input[@id='email']")).sendKeys(authData[0]);
+        driver.findElement(By.xpath(".//input[@id='password']")).sendKeys(authData[1]);
         driver.findElement(By.xpath(".//button[@class='auth-form__button']")).click();
     }
     @After
